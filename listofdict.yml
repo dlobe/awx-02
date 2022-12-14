@@ -20,7 +20,7 @@
          debug:
            msg: "{{ item }}"
          loop:
-           - "{{ output | dict2items | map(attribute='dir') }}"
+           - "{{ output | dict2items }}"
           # - "{{ mydata['content'] | b64decode  }}"
       
 

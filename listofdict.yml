@@ -2,7 +2,7 @@
 - hosts: all
   gather_facts: True
   tasks:
-       - name: read the json file
+       - name: slurp json
          slurp:
            src: /home/ansibleadm/test.json
          register: mydata
@@ -13,7 +13,7 @@
        - name: view data 
          debug:
         #   msg: "{{ mydata | json_query('[*].dir') | dict2items }}"
-           var: mydata  
+           msg: "{{ mydata['content'] | b64decode }}""  
         
 #       - name: check list items
 #         debug:

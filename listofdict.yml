@@ -31,6 +31,14 @@
            - "{{ mydata | json_query('[*].src') }}"
            - "{{ mydata | json_query('[*].dir') }}"
 
+       - name: copy files to respective directory new
+         copy:
+           src: "{{ item.src }}"
+           dest: "{{ item.dir}}"
+         remote_src: True
+         with_items::
+            - "{{ mydata }}"
+
        - name: copy files to respective directory
          copy:
            src: "{{ item.0 }}"

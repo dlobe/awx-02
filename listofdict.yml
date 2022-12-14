@@ -39,7 +39,7 @@
          with_together:
             - "{{ mydata | json_query('[*].src') }}"
             - "{{ mydata | json_query('[*].dir') }}"  
-         delegate_to: inventory_hostname       
+         delegate_to: ansible_hostname       
 
 
 #         vars:

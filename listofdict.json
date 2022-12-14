@@ -1,0 +1,5 @@
+[
+  { 'src': '/Users/davidlobe/ansible-lab/filetxt1', 'dir':'/Users/davidlobe/ansible-lab/opt/dir1'},
+  { 'src': '/Users/davidlobe/ansible-lab/filetxt2', 'dir':'/Users/davidlobe/ansible-lab/opt/dir2'},
+  { 'src': '/Users/davidlobe/ansible-lab/filetxt3', 'dir':'/Users/davidlobe/ansible-lab/opt/dir3'}
+]

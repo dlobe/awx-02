@@ -1,0 +1,70 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+     - base_dir: /Users/davidlobe/ansible-lab
+  tasks:
+       - name: set a fact
+         set_fact:
+                mydata: "{{ lookup('file', 'listofdict.json') }}"
+       - name: view data 
+         debug:
+        #   msg: "{{ mydata | json_query('[*].dir') | dict2items }}"
+           var: mydata  
+        
+#       - name: check list items
+#         debug:
+#           msg: "{{ item }}"
+#         loop:
+#           - "{{ mydata | json_query('[*].dir') }}"
+      
+
+       - name: create directory if it doesn't exist
+         file:
+           path: "{{ item }}"
+           state: directory
+           recurse: yes
+         with_items:
+           - "{{ mydata | json_query('[*].dir') }}"
+
+       - name: test with together
+         debug: msg="{{ item.0 }} and {{ item.1 }}" 
+         with_together: 
+           - "{{ mydata | json_query('[*].src') }}"
+           - "{{ mydata | json_query('[*].dir') }}"
+
+       - name: copy files to respective directory
+         copy:
+           src: "{{ item.0 }}"
+           dest: "{{ item.1 }}"
+         with_together:
+           - "{{ mydata | json_query('[*].src') }}"
+           - "{{ mydata | json_query('[*].dir') }}"         
+
+
+#         vars:
+#           jmesquery: "[*].dir"
+#           - "{{ mydata }}"
+#         ignore_errors: true
+##       - name: create dir
+#         
+#       - name: list operations
+#         debug:
+##           msg: "{{ mydata | json_query('[].operation') }}"
+#           msg: "{{ item | last }}"
+#         loop: "{{ mydata | to_json | from_json |list }}"
+#                
+##       - name: view data 
+##         shell: |
+##            "{{ item }}" | awk '/create/ {print}'
+##         loop:
+##           - "{{ mydata }}"
+#        
+#          
+##       - name: list operations
+##         debug:
+##           msg: "{{ mydata | json_query('[].operation') }}"
+##      
+##       - name: extract canonical id
+#         debug:
+#           msg: "{{ mydata | json_query('aliases[].mount_accessor') }}"

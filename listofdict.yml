@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  gather_facts: True
+  gather_facts: false
   tasks:
        - name: slurp json
          slurp:
@@ -13,12 +13,12 @@
        - name: view data 
          debug:
         #   msg: "{{ mydata | json_query('[*].dir') | dict2items }}"
-           msg: "{{ mydata['content'] | b64decode }}"  
+           msg: "{{ mydata['content'] | b64decode | list }}"  
          register: output
         
        - name: check list items
          debug:
-           msg: "{{ output | dict2items | json_query('value')}}"
+           msg: "{{ output | dict2items }}"
          #loop:
           # - "{{ output | json_query('[*].dir') }}"
           # - "{{ mydata['content'] | b64decode | type_debug') }}"

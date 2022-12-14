@@ -34,8 +34,8 @@
        - name: copy files to respective directory new
          copy:
            src: "{{ item.src }}"
-           dest: "{{ item.dir}}"
-         remote_src: True
+           dest: "{{ item.dir }}"
+           remote_src: true
          with_items::
             - "{{ mydata }}"
 
@@ -43,7 +43,7 @@
          copy:
            src: "{{ item.0 }}"
            dest: "{{ item.1 }}"
-           remote_src: True
+           remote_src: true
          with_together:
             - "{{ mydata | json_query('[*].src') }}"
             - "{{ mydata | json_query('[*].dir') }}"  

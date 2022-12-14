@@ -2,10 +2,14 @@
 - hosts: all
   gather_facts: True
   tasks:
-       - name: set a fact
-         set_fact:
-              mydata: "{{ lookup('file', '/home/ansibleadm/test.json') }}"
-              remote_src: true
+       - name: read the json file
+         slurp:
+           src: /home/ansibleadm/test.json
+         register: mydata
+#       - name: set a fact
+#         set_fact:
+#              mydata: "{{ lookup('file', '/home/ansibleadm/test.json') }}"
+#              remote_src: true
        - name: view data 
          debug:
         #   msg: "{{ mydata | json_query('[*].dir') | dict2items }}"

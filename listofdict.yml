@@ -6,9 +6,9 @@
          slurp:
            src: /home/ansibleadm/test.json
          register: mydata
-#       - name: set a fact
-#         set_fact:
-#              mydata: "{{ lookup('file', '/home/ansibleadm/test.json') }}"
+       - name: set a fact
+         set_fact:
+              List_Of_Files: "{{ lookup('file', 'mydata') }}"
 #              remote_src: true
        - name: view data 
          debug:

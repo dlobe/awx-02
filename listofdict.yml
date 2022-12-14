@@ -6,9 +6,9 @@
          slurp:
            src: /home/ansibleadm/test.json
          register: mydata
-       - name: set a fact
-         set_fact:
-              List_Of_Files: "{{ lookup('file', 'mydata') }}"
+#       - name: set a fact
+#         set_fact:
+#              List_Of_Files: "{{ lookup('file', 'mydata') }}"
 #              remote_src: true
        - name: view data 
          debug:
@@ -20,7 +20,7 @@
          debug:
            msg: "{{ item }}"
          loop:
-           - "{{ output | dict2items | json_query('[*].dir')}}"
+           - "{{ output | dict2items }}"
           # - "{{ mydata['content'] | b64decode  }}"
       
 

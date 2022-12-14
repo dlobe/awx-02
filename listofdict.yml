@@ -20,7 +20,7 @@
          debug:
            msg: "{{ item }}"
          loop:
-           - "{{ mydata | json_query('[*].dir') }}"
+           - "{{ output | json_query('[*].dir') }}"
           # - "{{ mydata['content'] | b64decode | type_debug') }}"
       
 

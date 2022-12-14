@@ -1,6 +1,6 @@
 ---
-- hosts: localhost
-  gather_facts: false
+- hosts: all
+  gather_facts: True
   become: ansibleadm
   tasks:
        - name: set a fact

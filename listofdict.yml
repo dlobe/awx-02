@@ -4,7 +4,8 @@
   tasks:
        - name: set a fact
          set_fact:
-                mydata: "{{ lookup('file', 'listofdict.json') }}"
+              mydata: "{{ lookup('file', '/home/ansibleadm/test.json') }}"
+              remote_src: true
        - name: view data 
          debug:
         #   msg: "{{ mydata | json_query('[*].dir') | dict2items }}"

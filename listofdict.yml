@@ -1,7 +1,8 @@
 ---
 - hosts: all
   gather_facts: True
-  become: ansibleadm
+  become: true
+  become_method: su
   tasks:
        - name: set a fact
          set_fact:

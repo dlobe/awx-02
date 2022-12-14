@@ -22,60 +22,60 @@
 #           - "{{ mydata | json_query('[*].dir') }}"
       
 
-       - name: create directory if it doesn't exist
-         file:
-           path: "{{ item }}"
-           state: directory
-           recurse: yes
-         with_items:
-           - "{{ mydata | json_query('[*].dir') }}"
-
-       - name: test with together
-         debug: msg="{{ item.0 }} and {{ item.1 }}" 
-         with_together: 
-           - "{{ mydata | json_query('[*].src') }}"
-           - "{{ mydata | json_query('[*].dir') }}"
-
-#       - name: copy files to respective directory new
+#       - name: create directory if it doesn't exist
+#         file:
+#           path: "{{ item }}"
+#           state: directory
+#           recurse: yes
+#         with_items:
+#           - "{{ mydata | json_query('[*].dir') }}"
+#
+#       - name: test with together
+#         debug: msg="{{ item.0 }} and {{ item.1 }}" 
+#         with_together: 
+#           - "{{ mydata | json_query('[*].src') }}"
+#           - "{{ mydata | json_query('[*].dir') }}"
+#
+##       - name: copy files to respective directory new
+##         copy:
+##           src: "{{ item.src }}"
+##           dest: "{{ item.dir }}"
+##           remote_src: true
+##         with_items::
+##            - "{{ mydata }}"
+#
+#       - name: copy files to respective directory
 #         copy:
-#           src: "{{ item.src }}"
-#           dest: "{{ item.dir }}"
+#           src: "{{ item.0 }}"
+#           dest: "{{ item.1 }}"
 #           remote_src: true
-#         with_items::
-#            - "{{ mydata }}"
-
-       - name: copy files to respective directory
-         copy:
-           src: "{{ item.0 }}"
-           dest: "{{ item.1 }}"
-           remote_src: true
-         with_together:
-            - "{{ mydata | json_query('[*].src') }}"
-            - "{{ mydata | json_query('[*].dir') }}"  
-             
-#         vars:
-#           jmesquery: "[*].dir"
-#           - "{{ mydata }}"
-#         ignore_errors: true
-##       - name: create dir
-#         
-#       - name: list operations
-#         debug:
-##           msg: "{{ mydata | json_query('[].operation') }}"
-#           msg: "{{ item | last }}"
-#         loop: "{{ mydata | to_json | from_json |list }}"
-#                
-##       - name: view data 
-##         shell: |
-##            "{{ item }}" | awk '/create/ {print}'
-##         loop:
+#         with_together:
+#            - "{{ mydata | json_query('[*].src') }}"
+#            - "{{ mydata | json_query('[*].dir') }}"  
+#             
+##         vars:
+##           jmesquery: "[*].dir"
 ##           - "{{ mydata }}"
-#        
-#          
+##         ignore_errors: true
+###       - name: create dir
+##         
 ##       - name: list operations
 ##         debug:
-##           msg: "{{ mydata | json_query('[].operation') }}"
-##      
-##       - name: extract canonical id
-#         debug:
-#           msg: "{{ mydata | json_query('aliases[].mount_accessor') }}"
+###           msg: "{{ mydata | json_query('[].operation') }}"
+##           msg: "{{ item | last }}"
+##         loop: "{{ mydata | to_json | from_json |list }}"
+##                
+###       - name: view data 
+###         shell: |
+###            "{{ item }}" | awk '/create/ {print}'
+###         loop:
+###           - "{{ mydata }}"
+##        
+##          
+###       - name: list operations
+###         debug:
+###           msg: "{{ mydata | json_query('[].operation') }}"
+###      
+###       - name: extract canonical id
+##         debug:
+##           msg: "{{ mydata | json_query('aliases[].mount_accessor') }}"

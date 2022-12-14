@@ -34,12 +34,13 @@
            - "{{ mydata | json_query('[*].dir') }}"
 
        - name: copy files to respective directory
-         copy:
-           src: "{{ item.0 }}"
-           dest: "{{ item.1 }}"
-         with_together:
-           - "{{ mydata | json_query('[*].src') }}"
-           - "{{ mydata | json_query('[*].dir') }}"         
+         local_action:
+           module: copy
+             src: "{{ item.0 }}"
+             dest: "{{ item.1 }}"
+           with_together:
+             - "{{ mydata | json_query('[*].src') }}"
+             - "{{ mydata | json_query('[*].dir') }}"         
 
 
 #         vars:

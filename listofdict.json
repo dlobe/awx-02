@@ -1,5 +1,5 @@
 [
-  { 'src': '/Users/davidlobe/ansible-lab/filetxt1', 'dir':'/Users/davidlobe/ansible-lab/opt/dir1'},
-  { 'src': '/Users/davidlobe/ansible-lab/filetxt2', 'dir':'/Users/davidlobe/ansible-lab/opt/dir2'},
-  { 'src': '/Users/davidlobe/ansible-lab/filetxt3', 'dir':'/Users/davidlobe/ansible-lab/opt/dir3'}
+  { 'src': '/opt/filetxt1', 'dir':'/opt/opt/dir1'},
+  { 'src': '/opt/filetxt2', 'dir':'/opt/opt/dir2'},
+  { 'src': '/opt/filetxt3', 'dir':'/opt/opt/dir3'}
 ]

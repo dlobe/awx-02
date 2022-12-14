@@ -13,12 +13,12 @@
        - name: view data 
          debug:
         #   msg: "{{ mydata | json_query('[*].dir') | dict2items }}"
-           msg: "{{ mydata.content | b64decode | list }}"  
+           msg: "{{ mydata.content | b64decode }}"  
          register: output
         
        - name: check list items
          debug:
-           msg: "{{ output | type_debug }}"
+           msg: "{{ output }}"
          #loop:
           # - "{{ output | json_query('[*].dir') }}"
           # - "{{ mydata['content'] | b64decode  }}"

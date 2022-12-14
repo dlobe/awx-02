@@ -15,11 +15,11 @@
         #   msg: "{{ mydata | json_query('[*].dir') | dict2items }}"
            msg: "{{ mydata['content'] | b64decode }}"  
         
-#       - name: check list items
-#         debug:
-#           msg: "{{ item }}"
-#         loop:
-#           - "{{ mydata | json_query('[*].dir') }}"
+       - name: check list items
+         debug:
+           msg: "{{ item }}"
+         loop:
+           - "{{ mydata['content'] | b64decode | json_query('[*].dir') }}"
       
 
 #       - name: create directory if it doesn't exist

@@ -35,6 +35,7 @@
          copy:
            src: "{{ item.0 }}"
            dest: "{{ item.1 }}"
+         remote_src: True
          with_together:
             - "{{ mydata | json_query('[*].src') }}"
             - "{{ mydata | json_query('[*].dir') }}"  

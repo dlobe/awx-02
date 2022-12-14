@@ -19,7 +19,7 @@
          debug:
            msg: "{{ item }}"
          loop:
-           - "{{ mydata['content'] | b64decode | json_query('[*].dir') }}"
+           - "{{ mydata['content'] | b64decode | type_debug') }}"
       
 
 #       - name: create directory if it doesn't exist

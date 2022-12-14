@@ -20,7 +20,7 @@
          debug:
            msg: "{{ item }}"
          loop:
-           - "{{ output | dict2items }}"
+           - "{{ output | dict2items | count }}"
           # - "{{ mydata['content'] | b64decode  }}"
       
 

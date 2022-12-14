@@ -13,15 +13,15 @@
        - name: view data 
          debug:
         #   msg: "{{ mydata | json_query('[*].dir') | dict2items }}"
-           msg: "{{ mydata['content'] | b64decode }}"  
+           msg: "{{ mydata['content'] | b64decode | dict2items }}"  
          register: output
         
        - name: check list items
          debug:
            msg: "{{ output | dict2items }}"
-         loop:
+         #loop:
           # - "{{ output | json_query('[*].dir') }}"
-           - "{{ mydata['content'] | b64decode | type_debug') }}"
+          # - "{{ mydata['content'] | b64decode  }}"
       
 
 #       - name: create directory if it doesn't exist

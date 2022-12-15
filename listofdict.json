@@ -1,5 +1,5 @@
 [
-  { 'src': '/home/ansibleadm/filetxt1', 'dir':'/home/ansibleadm/dir4'},
-  { 'src': '/home/ansibleadm/filetxt2', 'dir':'/home/ansibleadm/dir5'},
-  { 'src': '/home/ansibleadm/filetxt3', 'dir':'/home/ansibleadm/dir6'}
+  { 'src': '/home/ansibleadm/filetxt1', 'dir':'/home/ansibleadm/dir7'},
+  { 'src': '/home/ansibleadm/filetxt2', 'dir':'/home/ansibleadm/dir8'},
+  { 'src': '/home/ansibleadm/filetxt3', 'dir':'/home/ansibleadm/dir9'}
 ]

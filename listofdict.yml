@@ -6,8 +6,7 @@
          slurp:
            src: /home/ansibleadm/test.json
          register: mydata
-         args:
-           warn: false
+   
 #       - name: set a fact
 #         set_fact:
 #              List_Of_Files: "{{ lookup('file', 'mydata') }}"

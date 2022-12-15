@@ -18,7 +18,7 @@
         
        - name: check list items
          debug:
-           msg: "{{ output | dict2items | json_query('[*].value') }}"
+           msg: "{{ output | dict2items | json_query('[*].value') | type_debug}}"
          #loop:
           # - "{{ output | dict2items | []}}"
           # - "{{ mydata['content'] | b64decode  }}"

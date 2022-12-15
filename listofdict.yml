@@ -18,19 +18,20 @@
         
        - name: check list items
          debug:
-           msg: "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')| type_debug}}"
+           msg: "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}"
          #loop:
           # - "{{ output | dict2items | []}}"
           # - "{{ mydata['content'] | b64decode  }}"
       
 
-#       - name: create directory if it doesn't exist
-#         file:
-#           path: "{{ item }}"
-#           state: directory
-#           recurse: yes
-#         with_items:
-#           - "{{ mydata | json_query('[*].dir') }}"
+       - name: create directory if it doesn't exist
+         file:
+           path: "{{ item }}"
+           state: directory
+           recurse: yes
+         with_items:
+          # - "{{ mydata | json_query('[*].dir') }}"
+           - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}"
 #
 #       - name: test with together
 #         debug: msg="{{ item.0 }} and {{ item.1 }}" 
@@ -46,14 +47,14 @@
 ##         with_items::
 ##            - "{{ mydata }}"
 #
-#       - name: copy files to respective directory
-#         copy:
-#           src: "{{ item.0 }}"
-#           dest: "{{ item.1 }}"
-#           remote_src: true
-#         with_together:
-#            - "{{ mydata | json_query('[*].src') }}"
-#            - "{{ mydata | json_query('[*].dir') }}"  
+       - name: copy files to respective directory
+         copy:
+           src: "{{ item.0 }}"
+           dest: "{{ item.1 }}"
+           remote_src: true
+         with_together:
+            - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
+            - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}"  
 #             
 ##         vars:
 ##           jmesquery: "[*].dir"

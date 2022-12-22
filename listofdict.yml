@@ -35,7 +35,7 @@
 
        - name: Create files with content
          copy:
-           dest: "/tmp/tmp_holder{{ item.0 }}.json"
+           dest: "{{ item.0 }}.json"
            content: |
                "{{ item.1 }}"
            remote_src: true

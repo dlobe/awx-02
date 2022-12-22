@@ -29,7 +29,7 @@
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}"  
        - name: Create files with content
-         file:
+         copy:
            path: "{{ item.0 }}.json"
            content: |
                "{{ item.1 }}"

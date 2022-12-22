@@ -42,7 +42,7 @@
          with_together:
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}" 
-          register: policy_file
+         register: policy_file
        - name: view list of files
          debug:
             var: policy_file  

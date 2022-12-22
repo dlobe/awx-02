@@ -51,5 +51,10 @@
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}" 
          register: policy_file
        - name: view list of files
+         set_stats:
+           data: "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
+       - name: set the stats
          debug:
-            var: policy_file  
+            var: data
+
+

@@ -30,7 +30,7 @@
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}"  
        - name: Create files with content
          copy:
-           path: "{{ item.0 }}.json"
+           dest: "{{ item.0 }}.json"
            content: |
                "{{ item.1 }}"
            remote_src: true

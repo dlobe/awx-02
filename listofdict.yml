@@ -19,6 +19,13 @@
            recurse: yes
          with_items:
            - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}"
+       - name: create files if it doesn't exist
+         file:
+           path: "{{ item }}"
+           state: touch
+           recurse: yes
+         with_items:
+           - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
 
        - name: copy files to respective directory
          copy:
@@ -34,14 +41,6 @@
       #     state: directory
 
       ##################### BOA ##################
-       - name: create directory if it doesn't exist
-         file:
-           path: "{{ item }}"
-           state: touch
-           recurse: yes
-         with_items:
-           - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
-
        - name: Create files with content
          copy:
            dest: "{{ item.0 }}.json"

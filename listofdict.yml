@@ -27,10 +27,15 @@
            remote_src: true
          with_together:
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
-            - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}"  
+            - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}" 
+       - name: create temp file holder 
+         file:
+           path: /tmp/tmp_holder
+           state: directory
+
        - name: Create files with content
          copy:
-           dest: "{{ item.0 }}.json"
+           dest: "/tmp/tmp_holder/{{ item.0 }}.json"
            content: |
                "{{ item.1 }}"
            remote_src: true

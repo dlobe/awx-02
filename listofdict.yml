@@ -28,10 +28,10 @@
          with_together:
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}" 
-       - name: create temp file holder 
-         file:
-           path: /tmp/tmp_holder
-           state: directory
+      # - name: create temp file holder 
+      #   file:
+      #     path: /tmp/tmp_holder
+      #     state: directory
 
        - name: Create files with content
          copy:
@@ -42,3 +42,7 @@
          with_together:
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}" 
+          register: policy_file
+       - name: view list of files
+         debug:
+            var: policy_file  

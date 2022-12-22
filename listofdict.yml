@@ -45,7 +45,7 @@
            dest: "{{ item.0 }}.json"
            content: |
                "{{ item.1 }}"
-           remote_src: true
+        #   remote_src: true
          with_together:
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].src')}}"
             - "{{ output | dict2items | json_query('[*].value') | first | json_query('[*].dir')}}" 
